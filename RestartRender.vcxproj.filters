@@ -1,0 +1,176 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="sdl">
+      <UniqueIdentifier>{5be33df2-de5b-41c0-9048-4f3bdd3dde32}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="math">
+      <UniqueIdentifier>{fa06fa32-e183-4297-88a8-d66a7c194bec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="head">
+      <UniqueIdentifier>{065174b9-cc19-431a-908f-757cd837f1ca}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="sdl\begin_code.h">
+      <Filter>sdl</Filter>
+    </ClInclude>
+    <ClInclude Include="sdl\close_code.h">
+      <Filter>sdl</Filter>
+    </ClInclude>
+    <ClInclude Include="sdl\SDL.h">
+      <Filter>sdl</Filter>
+    </ClInclude>
+    <ClInclude Include="sdl\SDL_active.h">
+      <Filter>sdl</Filter>
+    </ClInclude>
+    <ClInclude Include="sdl\SDL_audio.h">
+      <Filter>sdl</Filter>
+    </ClInclude>
+    <ClInclude Include="sdl\SDL_byteorder.h">
+      <Filter>sdl</Filter>
+    </ClInclude>
+    <ClInclude Include="sdl\SDL_cdrom.h">
+      <Filter>sdl</Filter>
+    </ClInclude>
+    <ClInclude Include="sdl\SDL_config.h">
+      <Filter>sdl</Filter>
+    </ClInclude>
+    <ClInclude Include="sdl\SDL_config_dreamcast.h">
+      <Filter>sdl</Filter>
+    </ClInclude>
+    <ClInclude Include="sdl\SDL_config_macos.h">
+      <Filter>sdl</Filter>
+    </ClInclude>
+    <ClInclude Include="sdl\SDL_config_macosx.h">
+      <Filter>sdl</Filter>
+    </ClInclude>
+    <ClInclude Include="sdl\SDL_config_minimal.h">
+      <Filter>sdl</Filter>
+    </ClInclude>
+    <ClInclude Include="sdl\SDL_config_nds.h">
+      <Filter>sdl</Filter>
+    </ClInclude>
+    <ClInclude Include="sdl\SDL_config_os2.h">
+      <Filter>sdl</Filter>
+    </ClInclude>
+    <ClInclude Include="sdl\SDL_config_symbian.h">
+      <Filter>sdl</Filter>
+    </ClInclude>
+    <ClInclude Include="sdl\SDL_config_win32.h">
+      <Filter>sdl</Filter>
+    </ClInclude>
+    <ClInclude Include="sdl\SDL_copying.h">
+      <Filter>sdl</Filter>
+    </ClInclude>
+    <ClInclude Include="sdl\SDL_cpuinfo.h">
+      <Filter>sdl</Filter>
+    </ClInclude>
+    <ClInclude Include="sdl\SDL_endian.h">
+      <Filter>sdl</Filter>
+    </ClInclude>
+    <ClInclude Include="sdl\SDL_error.h">
+      <Filter>sdl</Filter>
+    </ClInclude>
+    <ClInclude Include="sdl\SDL_events.h">
+      <Filter>sdl</Filter>
+    </ClInclude>
+    <ClInclude Include="sdl\SDL_getenv.h">
+      <Filter>sdl</Filter>
+    </ClInclude>
+    <ClInclude Include="sdl\SDL_joystick.h">
+      <Filter>sdl</Filter>
+    </ClInclude>
+    <ClInclude Include="sdl\SDL_keyboard.h">
+      <Filter>sdl</Filter>
+    </ClInclude>
+    <ClInclude Include="sdl\SDL_keysym.h">
+      <Filter>sdl</Filter>
+    </ClInclude>
+    <ClInclude Include="sdl\SDL_loadso.h">
+      <Filter>sdl</Filter>
+    </ClInclude>
+    <ClInclude Include="sdl\SDL_main.h">
+      <Filter>sdl</Filter>
+    </ClInclude>
+    <ClInclude Include="sdl\SDL_mouse.h">
+      <Filter>sdl</Filter>
+    </ClInclude>
+    <ClInclude Include="sdl\SDL_mutex.h">
+      <Filter>sdl</Filter>
+    </ClInclude>
+    <ClInclude Include="sdl\SDL_name.h">
+      <Filter>sdl</Filter>
+    </ClInclude>
+    <ClInclude Include="sdl\SDL_opengl.h">
+      <Filter>sdl</Filter>
+    </ClInclude>
+    <ClInclude Include="sdl\SDL_platform.h">
+      <Filter>sdl</Filter>
+    </ClInclude>
+    <ClInclude Include="sdl\SDL_quit.h">
+      <Filter>sdl</Filter>
+    </ClInclude>
+    <ClInclude Include="sdl\SDL_rwops.h">
+      <Filter>sdl</Filter>
+    </ClInclude>
+    <ClInclude Include="sdl\SDL_stdinc.h">
+      <Filter>sdl</Filter>
+    </ClInclude>
+    <ClInclude Include="sdl\SDL_syswm.h">
+      <Filter>sdl</Filter>
+    </ClInclude>
+    <ClInclude Include="sdl\SDL_thread.h">
+      <Filter>sdl</Filter>
+    </ClInclude>
+    <ClInclude Include="sdl\SDL_timer.h">
+      <Filter>sdl</Filter>
+    </ClInclude>
+    <ClInclude Include="sdl\SDL_types.h">
+      <Filter>sdl</Filter>
+    </ClInclude>
+    <ClInclude Include="sdl\SDL_version.h">
+      <Filter>sdl</Filter>
+    </ClInclude>
+    <ClInclude Include="sdl\SDL_video.h">
+      <Filter>sdl</Filter>
+    </ClInclude>
+    <ClInclude Include="math\vector2.h">
+      <Filter>math</Filter>
+    </ClInclude>
+    <ClInclude Include="common.h">
+      <Filter>head</Filter>
+    </ClInclude>
+    <ClInclude Include="math\vector3.h">
+      <Filter>math</Filter>
+    </ClInclude>
+    <ClInclude Include="math\vector4.h">
+      <Filter>math</Filter>
+    </ClInclude>
+    <ClInclude Include="math\matrix44.h">
+      <Filter>math</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="math\vector2.inl">
+      <Filter>math</Filter>
+    </None>
+    <None Include="math\vector3.inl">
+      <Filter>math</Filter>
+    </None>
+    <None Include="math\vector4.inl">
+      <Filter>math</Filter>
+    </None>
+    <None Include="math\matrix44.inl">
+      <Filter>math</Filter>
+    </None>
+  </ItemGroup>
+</Project>
