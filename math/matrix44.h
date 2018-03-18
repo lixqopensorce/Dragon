@@ -4,6 +4,7 @@ class Vector4;
 class Vector3;
 class Matrix44
 {
+public:
 	union
 	{
 		struct  
@@ -26,6 +27,7 @@ class Matrix44
 		float iv20, float iv21, float iv22, float iv23,
 		float iv30, float iv31, float iv32, float iv33);
 	Matrix44(const Vector4& irow1, const Vector4& irow2, const Vector4& irow3, const Vector4& irow4);
+	Matrix44(const Matrix44& rmat);
 
 	const Matrix44& operator=(const Matrix44& irval);
 	const Matrix44& operator+=(const Matrix44& irval);
@@ -33,18 +35,24 @@ class Matrix44
 	const Matrix44& operator*=(const Matrix44& irval);
 	const Matrix44& operator*=(float ival);
 	const Matrix44& operator/=(float ival);
+
+	Matrix44 operator+(const Matrix44& irval) const;
+	Matrix44 operator-(const Matrix44& irval) const;
+	Matrix44 operator*(const Matrix44& irval) const;
+	Matrix44 operator*(float ival) const;
+	Matrix44 operator/(float ival) const;
 };
 //indentity matrix
-const Matrix44& matIndentity(Matrix44 iomat);
+//Remark:can become another function params
+Matrix44& MatrixIdentity(Matrix44& iomat);
 //translation matrix
-const Matrix44& matTranslation(Matrix44& omat, Vector3& ivec);
+Matrix44& MatrixTranslation(Matrix44& omat, Vector3& ivec);
+Matrix44& MatrixTranslation(Matrix44& omat, float x, float y, float z);
 //Rotate by x  Axis matrix(pitch)
-const Matrix44& matRotationX(Matrix44& omat, float radian);
+Matrix44& MatrixRotationX(Matrix44& omat, float radian);
 //Rotate by y Axis(yaw)
-const Matrix44& matRotationY(Matrix44& omat, float radian);
+Matrix44& MatrixRotationY(Matrix44& omat, float radian);
 //Rotate by z Axis(roll)
-const Matrix44& matRotationZ(Matrix44& omat, float radian);
+Matrix44& MatrixRotationZ(Matrix44& omat, float radian);
 //Rotation by Euler
-const Matrix44& matRotationYawPitchRoll(Matrix44& omat, const Vector3& iradians);
-//Rotation by Euler
-const Matrix44& matRotationYawPitchRoll(Matrix44& omat, float yaw_radian, float pitch_radian, float roll_radian);
+Matrix44& MatrixRotationYawPitchRoll(Matrix44& omat, float yaw_radian, float pitch_radian, float roll_radian);

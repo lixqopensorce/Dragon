@@ -173,4 +173,9 @@
       <Filter>math</Filter>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="math\matrix44.cpp">
+      <Filter>math</Filter>
+    </ClCompile>
+  </ItemGroup>
 </Project>
