@@ -46,8 +46,10 @@ public:
 //Remark:can become another function params
 Matrix44& MatrixIdentity(Matrix44& iomat);
 //translation matrix
-Matrix44& MatrixTranslation(Matrix44& omat, Vector3& ivec);
+Matrix44& MatrixTranslation(Matrix44& omat, const Vector3& ivec);
 Matrix44& MatrixTranslation(Matrix44& omat, float x, float y, float z);
+//scale matrix
+Matrix44& MatrixScaling(Matrix44& omat, float xscale, float yscale, float zscale);
 //Rotate by x  Axis matrix(pitch)
 Matrix44& MatrixRotationX(Matrix44& omat, float radian);
 //Rotate by y Axis(yaw)
@@ -56,3 +58,13 @@ Matrix44& MatrixRotationY(Matrix44& omat, float radian);
 Matrix44& MatrixRotationZ(Matrix44& omat, float radian);
 //Rotation by Euler
 Matrix44& MatrixRotationYawPitchRoll(Matrix44& omat, float yaw_radian, float pitch_radian, float roll_radian);
+//Rotation by Vector
+Matrix44& MatrixRotationAxis(Matrix44& omat, Vector3& axis, float angle);
+//LookAt viewport matrix left-handle Coordinate System
+Matrix44& MatrixLookAtLH(Matrix44& omat, const Vector3& eye,  const Vector3& at, const Vector3& up);
+//Returns the determinant of a matrix.
+float MatrixDeterminant(const Matrix44& in_mat);
+//Returns the determinant of a matrix2*2
+float MatrixDeterminant22(const float a, const float b, const float c, const float d);
+//Returns the determinant of a matrix3*3
+float MatrixDeterminant33(const float a00, const float a01, const float a02, const float a10, const float a11, const float a12, const float a20, const float a21, const float a22);

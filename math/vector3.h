@@ -16,18 +16,21 @@ public:
 	const Vector3& operator/=(float val);
 
 	const Vector3 operator+(const Vector3& rval) const;
-	const Vector3 operator-(const Vector3& rval) const;
+	Vector3 operator-(const Vector3& rval) const;
 	const Vector3 operator*(float val) const;
 	const Vector3 operator/(float val) const;
+	const Vector3 operator-() const;
 
 	float Length() const;
 	float Dot(const Vector3& rval) const;
+	Vector3& Normalize();
 	const Vector3 Cross(const Vector3& rval) const;
-	const Vector3& Normalize();
 
 	float x;
 	float y;
 	float z;
 };
+
+//const Vector3& Normalize(Vector3& vec);
 
 #include "vector3.inl"
