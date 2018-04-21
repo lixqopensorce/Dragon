@@ -135,6 +135,11 @@ Matrix44& MatrixRotationAxis(Matrix44& omat, Vector3& axis, float angle)
 	return omat;
 }
 
+Matrix44& MatrixRotationYawPitchRoll(Matrix44& omat, const Vector3& in_vec)
+{
+	return MatrixRotationYawPitchRoll(omat, in_vec.x, in_vec.y, in_vec.z);
+}
+
 Matrix44& MatrixLookAtLH(Matrix44& omat, const Vector3& eye, const Vector3& at, const Vector3& up)
 {
 	MatrixIdentity(omat);
@@ -150,17 +155,17 @@ Matrix44& MatrixLookAtLH(Matrix44& omat, const Vector3& eye, const Vector3& at, 
 	omat.arr[0][0] = x_axis.x;
 	omat.arr[1][0] = x_axis.y;
 	omat.arr[2][0] = x_axis.z;
-	omat.arr[3][0] = -translation_vec.x;
+	omat.arr[3][0] = -eye.Dot(x_axis);
 
 	omat.arr[0][1] = y_axis.x;
 	omat.arr[1][1] = y_axis.y;
 	omat.arr[2][1] = y_axis.z;
-	omat.arr[3][1] = -translation_vec.y;
+	omat.arr[3][1] = -eye.Dot(y_axis);
 
 	omat.arr[0][2] = z_axis.x;
 	omat.arr[1][2] = z_axis.y;
 	omat.arr[2][2] = z_axis.z;
-	omat.arr[3][2] = -translation_vec.z;
+	omat.arr[2][3] = -eye.Dot(z_axis);
 
 	return omat;
 }
@@ -189,6 +194,4 @@ float MatrixDeterminant33(const float a00, const float a01, const float a02, con
 {
 	return a00 * MatrixDeterminant22(a11, a12, a21, a22) - a01 * MatrixDeterminant22(a10, a12, a20, a22) + a02 * MatrixDeterminant22(a10, a11, a20, a21);
 }
-
-
  

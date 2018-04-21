@@ -1,5 +1,5 @@
 #pragma once
-#include "common.h"
+#include "../common.h"
 class Vector4;
 class Vector3;
 class Matrix44
@@ -15,10 +15,7 @@ public:
 			float v30, v31, v32, v33;
 		};
 
-		struct  
-		{
-			float arr[4][4];
-		};
+		float arr[4][4];
 	};
 
 	Matrix44();
@@ -58,6 +55,7 @@ Matrix44& MatrixRotationY(Matrix44& omat, float radian);
 Matrix44& MatrixRotationZ(Matrix44& omat, float radian);
 //Rotation by Euler
 Matrix44& MatrixRotationYawPitchRoll(Matrix44& omat, float yaw_radian, float pitch_radian, float roll_radian);
+<<<<<<< HEAD
 //Rotation by Vector
 Matrix44& MatrixRotationAxis(Matrix44& omat, Vector3& axis, float angle);
 //LookAt viewport matrix left-handle Coordinate System
@@ -68,3 +66,11 @@ float MatrixDeterminant(const Matrix44& in_mat);
 float MatrixDeterminant22(const float a, const float b, const float c, const float d);
 //Returns the determinant of a matrix3*3
 float MatrixDeterminant33(const float a00, const float a01, const float a02, const float a10, const float a11, const float a12, const float a20, const float a21, const float a22);
+=======
+//Rotation by Euler
+Matrix44& MatrixRotationYawPitchRoll(Matrix44& omat, const Vector3& in_vec);
+//Rotation by any axis
+Matrix44& MatrixRotationAxis(Matrix44& omat, const Vector3& axis, float angle);	
+//LookAt Matrix 
+Matrix44& MatrixLookAtLH(Matrix44& omat, Vector3& eye, Vector3& at, Vector3& up);
+>>>>>>> 35faa32c0f09d65975fc6e732ca0845a84a031f2
