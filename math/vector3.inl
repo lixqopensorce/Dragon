@@ -59,7 +59,7 @@ inline const Vector3 Vector3::operator+(const Vector3& rval) const
 	return Vector3(x + rval.x, y + rval.y, z + rval.z);
 }
 
-inline const Vector3 Vector3::operator-(const Vector3& rval) const
+inline Vector3 Vector3::operator-(const Vector3& rval) const
 {
 	return Vector3(x - rval.x, y - rval.y, z - rval.z);
 }
@@ -75,6 +75,11 @@ inline const Vector3 Vector3::operator/(float val) const
 	return Vector3(x / val, y / val, z / val);
 }
 
+inline const Vector3 Vector3::operator-() const
+{
+	return Vector3(-x, -y, -z);
+}
+
 inline float Vector3::Length() const
 {
 	return sqrtf(x * x + y * y + z * z);
@@ -85,11 +90,11 @@ inline float Vector3::Dot(const Vector3& rval) const
 	return x * rval.x + y * rval.y + z * rval.z;
 }
 
-inline const Vector3& Vector3::Normalize()
+inline Vector3& Vector3::Normalize()
 {
 	float len = Length();
 	assert(len > FLT_MIN);
-
+	
 	*this /= len;
 	return *this;
 }

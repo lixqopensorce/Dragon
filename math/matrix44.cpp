@@ -39,6 +39,17 @@ Matrix44& MatrixTranslation(Matrix44& omat, Vector3& ivec)
 	return omat;
 }
 
+Matrix44& MatrixScaling(Matrix44& omat, float xscale, float yscale, float zscale)
+{
+	MatrixIdentity(omat);
+
+	omat.arr[0][0] = xscale;
+	omat.arr[1][1] = yscale;
+	omat.arr[2][2] = zscale;
+
+	return omat;
+}
+
 Matrix44& MatrixRotationX(Matrix44& omat, float radian)
 {
 	MatrixIdentity(omat);
@@ -81,6 +92,7 @@ Matrix44& MatrixRotationZ(Matrix44& omat, float radian)
 	return omat;
 }
 
+//yaw pitch roll
 Matrix44& MatrixRotationYawPitchRoll(Matrix44& omat, float yaw_radian, float pitch_radian, float roll_radian)
 {
 	MatrixIdentity(omat);
@@ -95,39 +107,50 @@ Matrix44& MatrixRotationYawPitchRoll(Matrix44& omat, float yaw_radian, float pit
 	return omat;
 }
 
+Matrix44& MatrixRotationAxis(Matrix44& omat, Vector3& axis, float angle)
+{
+	MatrixIdentity(omat);
+	axis.Normalize();
+
+	float f_cos = cosf(angle);
+	float f_sin = sinf(angle);
+
+	float xqrt = axis.x * axis.x;
+	float xyvalue = axis.x * axis.y;
+	float yqrt = axis.y * axis.y;
+	float other_cos = 1 - f_cos;
+
+	omat.arr[0][0] = xqrt * other_cos + f_cos;
+	omat.arr[0][1] = xyvalue * other_cos + axis.x * f_sin;
+	omat.arr[0][2] = xqrt * other_cos - axis.y * f_sin;
+
+	omat.arr[1][0] = xyvalue * other_cos - axis.x * f_sin;
+	omat.arr[1][1] = yqrt * other_cos + f_cos;
+	omat.arr[1][2] = xyvalue * other_cos + axis.x * f_sin;
+
+	omat.arr[2][0] = xqrt * other_cos + axis.y * f_sin;
+	omat.arr[2][1] = xyvalue * other_cos - axis.x * f_sin;
+	omat.arr[2][2] = xqrt * other_cos + f_cos;
+
+	return omat;
+}
+
 Matrix44& MatrixRotationYawPitchRoll(Matrix44& omat, const Vector3& in_vec)
 {
 	return MatrixRotationYawPitchRoll(omat, in_vec.x, in_vec.y, in_vec.z);
 }
 
-Matrix44& MatrixRotationAxis(Matrix44& omat, const Vector3& axis, float angle)
+Matrix44& MatrixLookAtLH(Matrix44& omat, const Vector3& eye, const Vector3& at, const Vector3& up)
 {
 	MatrixIdentity(omat);
-	float fcos = cosf(angle);
-	float fsin = sinf(angle);
-
-	omat.arr[0][0] = axis.x * axis.x * (1 - fcos) + fcos;
-	omat.arr[0][1] = axis.x * axis.y * (1 - fcos) + axis.z * fsin;
-	omat.arr[0][2] = axis.x * axis.z * (1 - fcos) - axis.y * fsin;
-
-	omat.arr[1][0] = axis.x * axis.y * (1 - fcos) - axis.x * fsin;
-	omat.arr[1][1] = axis.y * axis.y * (1 - fcos) + fcos;
-	omat.arr[1][2] = axis.y * axis.z * (1 - fcos) + axis.x * fsin;
-
-	omat.arr[2][0] = axis.x * axis.z * (1 - fcos) + axis.y * fsin;
-	omat.arr[2][1] = axis.y * axis.z * (1 - fcos) - axis.x * fsin;
-	omat.arr[2][2] = axis.z * axis.z * (1 - fcos) + fcos;
-
-	return omat;
-}
-
-Matrix44& MatrixLookAtLH(Matrix44& omat, Vector3& eye, Vector3& at, Vector3& up)
-{
-	MatrixIdentity(omat);
-	Vector3 y_axis = up.Normalize();
-	Vector3 x_axis = (at - eye);
-	x_axis = x_axis.Normalize();
-	Vector3 z_axis = x_axis.Cross(y_axis);
+	//z-axis
+	Vector3 z_axis = (at - eye).Normalize();
+	//x-axis
+	Vector3 x_axis = up.Cross(z_axis);
+	//y-axis
+	Vector3 y_axis = z_axis.Cross(x_axis);
+	
+	Vector3 translation_vec = Vector3(eye.Dot(x_axis), eye.Dot(y_axis), eye.Dot(z_axis));
 
 	omat.arr[0][0] = x_axis.x;
 	omat.arr[1][0] = x_axis.y;
@@ -147,6 +170,7 @@ Matrix44& MatrixLookAtLH(Matrix44& omat, Vector3& eye, Vector3& at, Vector3& up)
 	return omat;
 }
 
+<<<<<<< HEAD
 Matrix44& MatrixPerspectiveLH(Matrix44& omat, float in_fov, float aspect, float near, float far)
 {
 	float ftan = tanf(in_fov / 2);
@@ -186,6 +210,30 @@ float fDeterminant2x2(float a11, float a12, float a21, float a22)
 	return a11 * a22 - a12 * a21;
 }
 
+=======
+float MatrixDeterminant(const Matrix44& in_mat)
+{
+	float ftemp1 = in_mat.arr[0][0] * MatrixDeterminant33(in_mat.arr[1][1], in_mat.arr[1][2], in_mat.arr[1][3], in_mat.arr[2][1], in_mat.arr[2][2], in_mat.arr[2][3],
+		in_mat.arr[3][1], in_mat.arr[3][2], in_mat.arr[3][3]);
+	float ftemp2 = -1 * in_mat.arr[0][1] * MatrixDeterminant33(in_mat.arr[1][0], in_mat.arr[1][2], in_mat.arr[1][3], in_mat.arr[2][0], in_mat.arr[2][2], in_mat.arr[2][3],
+		in_mat.arr[3][0], in_mat.arr[3][2], in_mat.arr[3][3]);
+	float ftemp3 = in_mat.arr[0][2] * MatrixDeterminant33(in_mat.arr[1][0], in_mat.arr[1][1], in_mat.arr[1][3], in_mat.arr[2][0], in_mat.arr[2][1], in_mat.arr[2][3],
+		in_mat.arr[3][0], in_mat.arr[3][1], in_mat.arr[3][3]);
+	float ftemp4 = -1 * in_mat.arr[0][3] * MatrixDeterminant33(in_mat.arr[1][0], in_mat.arr[1][1], in_mat.arr[1][2], in_mat.arr[2][0], in_mat.arr[2][1], in_mat.arr[2][2],
+		in_mat.arr[3][0], in_mat.arr[3][1], in_mat.arr[3][2]);
+	
+	return ftemp1 + ftemp2 + ftemp3 + ftemp4;
+}
+>>>>>>> 5ce51e0380e5566967bebbb882fd0c8d35dd593c
 
+//ÐÐÁÐÊ½
+float MatrixDeterminant22(const float a, const float b, const float c, const float d)
+{
+	return a * d - b * c;
+}
 
+float MatrixDeterminant33(const float a00, const float a01, const float a02, const float a10, const float a11, const float a12, const float a20, const float a21, const float a22)
+{
+	return a00 * MatrixDeterminant22(a11, a12, a21, a22) - a01 * MatrixDeterminant22(a10, a12, a20, a22) + a02 * MatrixDeterminant22(a10, a11, a20, a21);
+}
  
