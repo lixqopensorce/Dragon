@@ -59,3 +59,13 @@ Matrix44& MatrixRotationYawPitchRoll(Matrix44& omat, const Vector3& in_vec);
 Matrix44& MatrixRotationAxis(Matrix44& omat, const Vector3& axis, float angle);	
 //LookAt Matrix 
 Matrix44& MatrixLookAtLH(Matrix44& omat, Vector3& eye, Vector3& at, Vector3& up);
+//Perspective project Matrix
+Matrix44& MatrixPerspectiveLH(Matrix44& omat, float fov, float aspect, float near, float far);
+//Perspective project Matrix
+Matrix44& MatrixPerspectiveLH(Matrix44& omat, float in_left, float in_right, float in_top, float in_bottom, float in_near, float in_far);
+//matrix determinant matrix22
+float fDeterminant2x2(float a11, float a12, float a21, float a22);
+//matrix determinant matrix33
+float fDeterminant3x3(float a11, float a12, float a13, float a21, float a22, float a23, float a31, float a32, float a33);
+
+

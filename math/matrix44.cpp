@@ -147,6 +147,45 @@ Matrix44& MatrixLookAtLH(Matrix44& omat, Vector3& eye, Vector3& at, Vector3& up)
 	return omat;
 }
 
+Matrix44& MatrixPerspectiveLH(Matrix44& omat, float in_fov, float aspect, float near, float far)
+{
+	float ftan = tanf(in_fov / 2);
+	float fcot = 1 / ftan;
+
+	omat.arr[0][0] = fcot / aspect;
+	omat.arr[0][1] = fcot;
+
+	omat.arr[2][2] = far / (far - near);
+	omat.arr[2][1] = far * near / (near - far);
+
+	omat.arr[2][3] = 1.0f;
+
+	return omat;
+}
+
+Matrix44& MatrixPerspectiveLH(Matrix44& omat, float in_left, float in_right, float in_top, float in_bottom, float in_near, float in_far)
+{
+	MatrixIdentity(omat);
+
+	omat.arr[0][0] = 2 * in_near / (in_right - in_left);
+	omat.arr[2][0] = -(in_right + in_left) / (in_right - in_left);
+
+	omat.arr[0][1] = 2 * in_near / (in_top - in_bottom);
+	omat.arr[2][1] = -(in_top + in_bottom) / (in_top - in_bottom);
+
+	omat.arr[2][2] = in_far / (in_far - in_near);
+	omat.arr[3][2] = in_far * in_near / (in_near - in_far);
+
+	omat.arr[2][3] = 1.0f;
+
+	return omat;
+}
+
+float fDeterminant2x2(float a11, float a12, float a21, float a22)
+{
+	return a11 * a22 - a12 * a21;
+}
+
 
 
  
