@@ -1,6 +1,7 @@
-#pragma once
+#ifndef DRAGON_MATH_VECTOR2
+#define DRAGON_MATH_VECTOR2 
 
-#include "common.h"
+#include "../common.h"
 
 class Vector2
 {
@@ -22,10 +23,13 @@ public:
 
 	float Length() const;
 	float Dot(const Vector2& rh) const;
-	const Vector2& Normalize();
+	Vector2& Normalize();
 
 	float x;
 	float y;
 };
 
+Vector2 Normalize(const Vector2& in_vec);
+
 #include "vector2.inl"
+#endif

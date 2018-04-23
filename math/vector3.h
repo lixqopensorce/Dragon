@@ -1,6 +1,7 @@
-#pragma once
+#ifndef DRAGON_MATH_VECTOR3
+#define DRAGON_MATH_VECTOR3
 
-#include "common.h"
+#include "../common.h"
 
 class Vector3
 {
@@ -31,6 +32,8 @@ public:
 	float z;
 };
 
+Vector3 Normalize(const Vector3& in_vec);
 //const Vector3& Normalize(Vector3& vec);
 
 #include "vector3.inl"
+#endif

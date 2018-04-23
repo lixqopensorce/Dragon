@@ -50,7 +50,7 @@ inline const Vector4& Vector4::operator*=(float val)
 
 inline const Vector4& Vector4::operator/=(float val)
 {
-	assert(fabs(val) > FLT_MIN);
+	assert(fabs(fabs(val) - FLT_MIN) > FLT_MIN);
 
 	x /= val;
 	y /= val;
@@ -111,11 +111,25 @@ inline const Vector4& Vector4::Homegenize()
 	return *this;
 }
 
-inline const Vector4& Vector4::Normalize()
+inline Vector4& Vector4::Normalize()
 {
+	float len = Length();
+	assert(fabs(len - FLT_MIN) > FLT_MIN);
 	float val = 1.0f / Length();
-	assert(val > FLT_MIN);
 
 	*this *= val;
 	return *this;
+}
+
+inline Vector4 Normalize(const Vector4& in_vec)
+{
+	float len = in_vec.Length();
+	assert(fabs(len - FLT_MIN) > FLT_MIN);
+
+	float val = 1.0f / len;
+
+	Vector4 unit_vec;
+	unit_vec = in_vec * val;
+
+	return unit_vec;
 }

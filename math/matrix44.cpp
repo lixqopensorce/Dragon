@@ -170,7 +170,38 @@ Matrix44& MatrixLookAtLH(Matrix44& omat, const Vector3& eye, const Vector3& at, 
 	return omat;
 }
 
-<<<<<<< HEAD
+Matrix44& MatrixOrthoOffCenterLH(Matrix44& out_mat, float left, float right, float top, float bottom, float near, float far)
+{
+	MatrixIdentity(out_mat);
+	float width = right - left;
+	float height = top - bottom;
+
+	out_mat.arr[0][0] = 2.0f / width;
+	out_mat.arr[3][0] = -(2.0f * left + width) / width;
+
+	out_mat.arr[1][1] = 2.0f / height;
+	out_mat.arr[3][1] = -(2.0f * bottom + height) / height;
+
+	out_mat.arr[2][2] = 1.0f / (far - near);
+	out_mat.arr[3][2] = near / (near - far);
+
+	return out_mat;
+}
+
+Matrix44& MatrixOrthoLH(Matrix44& out_mat, float widht, float height, float near, float far)
+{
+	MatrixIdentity(out_mat);
+
+	out_mat.arr[0][0] = 2.0f / widht;
+
+	out_mat.arr[1][1] = 2.0f / height;
+
+	out_mat.arr[2][2] = 1.0f / (far - near);
+	out_mat.arr[3][2] = near / (near - far);
+
+	return out_mat;
+}
+
 Matrix44& MatrixPerspectiveLH(Matrix44& omat, float in_fov, float aspect, float near, float far)
 {
 	float ftan = tanf(in_fov / 2);
@@ -210,7 +241,6 @@ float fDeterminant2x2(float a11, float a12, float a21, float a22)
 	return a11 * a22 - a12 * a21;
 }
 
-=======
 float MatrixDeterminant(const Matrix44& in_mat)
 {
 	float ftemp1 = in_mat.arr[0][0] * MatrixDeterminant33(in_mat.arr[1][1], in_mat.arr[1][2], in_mat.arr[1][3], in_mat.arr[2][1], in_mat.arr[2][2], in_mat.arr[2][3],
@@ -224,7 +254,6 @@ float MatrixDeterminant(const Matrix44& in_mat)
 	
 	return ftemp1 + ftemp2 + ftemp3 + ftemp4;
 }
->>>>>>> 5ce51e0380e5566967bebbb882fd0c8d35dd593c
 
 //ĞĞÁĞÊ½
 float MatrixDeterminant22(const float a, const float b, const float c, const float d)
@@ -236,4 +265,34 @@ float MatrixDeterminant33(const float a00, const float a01, const float a02, con
 {
 	return a00 * MatrixDeterminant22(a11, a12, a21, a22) - a01 * MatrixDeterminant22(a10, a12, a20, a22) + a02 * MatrixDeterminant22(a10, a11, a20, a21);
 }
- 
+
+Matrix44& MatrixInverse(Matrix44& out_mat, const Matrix44& in_mat)
+{
+	float determinant = MatrixDeterminant(in_mat);
+	MatrixIdentity(out_mat);
+
+	if (determinant == 0)
+	{
+		return out_mat;
+	}
+
+	out_mat = in_mat / determinant;
+
+	return out_mat;
+}
+
+Matrix44& Matrix44Viewport(Matrix44& out_mat, float start_x, float start_y, float width, float height, float near, float far)
+{
+	MatrixIdentity(out_mat);
+
+	out_mat.arr[0][0] = width / 2.0f;
+	out_mat.arr[3][0] = width / 2.0f + start_x;
+
+	out_mat.arr[1][1] = height / 2.0f;
+	out_mat.arr[3][1] = height / 2.0f + start_y;
+
+	out_mat.arr[2][2] = far - near;
+	out_mat.arr[2][3] = near;
+
+	return out_mat;
+}

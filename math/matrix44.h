@@ -1,4 +1,5 @@
-#pragma once
+#ifndef DRAGON_MATH_MATRIX44
+#define DRAGON_MATH_MATRIX44 
 #include "../common.h"
 class Vector4;
 class Vector3;
@@ -65,9 +66,21 @@ float MatrixDeterminant(const Matrix44& in_mat);
 float MatrixDeterminant22(const float a, const float b, const float c, const float d);
 //Returns the determinant of a matrix3*3
 float MatrixDeterminant33(const float a00, const float a01, const float a02, const float a10, const float a11, const float a12, const float a20, const float a21, const float a22);
+//Calculates the inverse of a matrix.
+Matrix44& MatrixInverse(Matrix44& out_mat, const Matrix44& in_mat);
 //Rotation by Euler
 Matrix44& MatrixRotationYawPitchRoll(Matrix44& omat, const Vector3& in_vec);
 //Perspective project Matrix
 Matrix44& MatrixPerspectiveLH(Matrix44& omat, float fov, float aspect, float near, float far);
 //Perspective project Matrix
 Matrix44& MatrixPerspectiveLH(Matrix44& omat, float in_left, float in_right, float in_top, float in_bottom, float in_near, float in_far);
+//orthographic camera project matrix
+Matrix44& MatrixOrthoOffCenterLH(Matrix44& out_mat, float left, float right, float top, float bottom, float near, float far);
+//orthographic camera project matrix
+Matrix44& MatrixOrthoLH(Matrix44& out_mat, float widht, float height, float near, float far);
+//viewport matrix
+Matrix44& Matrix44Viewport(Matrix44& out_mat, float start_x, float start_y, float width, float height, float near, float far);
+
+#include "matrix44.inl"
+
+#endif

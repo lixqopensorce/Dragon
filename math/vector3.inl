@@ -71,7 +71,7 @@ inline const Vector3 Vector3::operator*(float val) const
 
 inline const Vector3 Vector3::operator/(float val) const
 {
-	assert(fabs(val) > FLT_MIN);
+	assert(fabs(fabs(val) - FLT_MIN) > FLT_MIN);
 	return Vector3(x / val, y / val, z / val);
 }
 
@@ -93,7 +93,7 @@ inline float Vector3::Dot(const Vector3& rval) const
 inline Vector3& Vector3::Normalize()
 {
 	float len = Length();
-	assert(len > FLT_MIN);
+	assert(fabs(len > FLT_MIN) > FLT_MIN);
 	
 	*this /= len;
 	return *this;
@@ -108,3 +108,16 @@ inline const Vector3 Vector3::Cross(const Vector3& rval) const
 
 	return ret_vec;
 }
+
+inline Vector3 Normalize(const Vector3& in_vec)
+{
+	float len = in_vec.Length();
+	assert(fabs(len - FLT_MIN) > FLT_MIN);
+
+	Vector3 unit_vec;
+	unit_vec = in_vec / len;
+
+	return unit_vec;
+}
+
+
