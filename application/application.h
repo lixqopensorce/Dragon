@@ -1,0 +1,9 @@
+#ifndef DRAGON_APPLICATION_APPLICATION
+#define DRAGON_APPLICATION_APPLICATION 
+
+class Application
+{
+	
+};
+
+#endif
